@@ -1,5 +1,6 @@
 package com.example.paginganddto.employee.controller;
 
+import com.example.paginganddto.employee.dto.EmployeeDto;
 import com.example.paginganddto.employee.model.Employee;
 import com.example.paginganddto.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class EmployeeController
     EmployeeService service;
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees(
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy)
     {
-        List<Employee> list = service.getAllEmployees(pageNo, pageSize, sortBy);
+        List<EmployeeDto> list = service.getAllEmployees(pageNo, pageSize, sortBy);
 
-        return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<EmployeeDto>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 }
